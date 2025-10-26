@@ -15,3 +15,8 @@ analysis_data_set = data_set[[dep_var] + indep_vars]
 #Descriptive stats
 desc_stats = analysis_data_set.describe(include=all).transpose()
 
+#Mode and Range for table
+desc_stats["mode"] = analysis_data_set.mode().iloc[0]
+desc_stats["range"] = desc_stats["max"] - desc_stats["min"]
+
+#
