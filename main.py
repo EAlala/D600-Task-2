@@ -9,3 +9,5 @@ data_set = pd.read_csv('C:/Users/yeai2_6rsknlh/OneDrive/Visual/D600 Task 2/D600 
 dep_var = "IsLuxury"
 indep_vars = ["Price", "SquareFootage", "SchoolRating", "RenovationQuality", "Garage", "CrimeRate", "LocalAmenities"]
 
+#New dataframe
+analysis_data_set = data_set[[dep_var] + indep_vars]
