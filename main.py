@@ -61,3 +61,9 @@ for i, var in enumerate(bivariate_vars):
 
 plt.tight_layout()
 plt.show()
+
+#Categorical visuals
+plt.figure(figsize=(8, 5))
+sns.countplot(x='Garage', hue='IsLuxury', data=analysis_data_set)
+plt.title("Garage vs IsLuxury")
+plt.show()
