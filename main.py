@@ -22,3 +22,8 @@ desc_stats["range"] = desc_stats["max"] - desc_stats["min"]
 #Cleaner presentation
 final_stats = desc_stats[["count", "mean", "mode", "std", "min", "max", "range"]]
 
+#Display
+print(final_stats.round(2))
+
+print(f"\n{analysis_data_set['IsLuxury'].value_counts()}")
+print(f"\n{analysis_data_set['Garage'].value_counts()}")
