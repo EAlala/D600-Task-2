@@ -11,3 +11,7 @@ indep_vars = ["Price", "SquareFootage", "SchoolRating", "RenovationQuality", "Ga
 
 #New dataframe
 analysis_data_set = data_set[[dep_var] + indep_vars]
+
+#Descriptive stats
+desc_stats = analysis_data_set.describe(include=all).transpose()
+
