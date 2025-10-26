@@ -48,3 +48,16 @@ for j in range(len(vars_to_plot), len(axes)):
 
 plt.tight_layout()
 plt.show()
+
+# Bivariate: Relationship between EACH independent variable and IsLuxury
+fig, axes = plt.subplots(2, 3, figsize=(15, 10))
+axes = axes.ravel()
+bivariate_vars = ["Price", "SquareFootage", "SchoolRating", "RenovationQuality", "CrimeRate", "LocalAmenities"]
+
+for i, var in enumerate(bivariate_vars):
+    if i < len(axes):
+        sns.boxplot(x='IsLuxury', y=var, data=analysis_data_set, ax=axes[i])
+        axes[i].set_title(f"{var} vs IsLuxury")
+
+plt.tight_layout()
+plt.show()
