@@ -3,6 +3,7 @@ import numpy as np
 import seaborn as sns
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
+import statsmodels.api as sm
 
 #load data set
 data_set = pd.read_csv("C:/Users/yeai2_6rsknlh/OneDrive/Visual/D600 Task 2/D600 Task 2 Dataset 1 Housing Information.csv")
@@ -96,3 +97,26 @@ X_test.to_csv('test_features.csv', index=False)
 Y_test.to_csv('test_target.csv', index=False)
 
 print("Training and test datasets saved to CSV files")
+
+#Logistic Regression Model with Backward Elimination
+
+features = list(X_train.columns)
+optimal_features = features.copy()
+
+#Backward elimination
+for i in range(len(features)):
+    X_temp = X_train[optimal_features]
+    X_temp = sm.add_constant(X_temp)
+    model = sm.Logit(Y_train, X_temp).fit(disp=False)
+
+    #Find features with highest P-values
+    p_values = model.pvaules[1:]
+    max_p = p_values.max()
+
+    #Remove P values less than 0.05
+    if max_p > 0.05:
+        worst_feature = p_values.idxmax()
+        optimal_features.remove(worst_feature)
+        print(f"Removed {worst_feature} (p-value: {max_p:.4f})")
+    else:
+        break
