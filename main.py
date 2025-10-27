@@ -124,3 +124,13 @@ for i in range(len(features)):
 #Optimized model
 X_optimal = sm.add_constant(X_train[optimal_features])
 final_model = sm.Logit(Y_train, X_optimal).fit()
+
+#Display 
+print(f"\nFinal optimal features: {optimal_features}")
+print(final_model.summary())
+
+#Key metrics
+print("\nEXTRACTED MODEL PARAMETERS:")
+print(f"AIC: {final_model.aic:.4f}")
+print(f"BIC: {final_model.bic:.4f}")
+print(f"Pseudo R-squared: {final_model.prsquared:.4f}")
