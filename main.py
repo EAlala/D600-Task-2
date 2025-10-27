@@ -89,3 +89,10 @@ print(f"Test set size: {X_test.shape[0]} samples")
 print(f"Luxury homes in training: {Y_train.sum()} ({Y_train.mean()*100:.1f}%)")
 print(f"Luxury homes in test: {Y_test.sum()} ({Y_test.mean()*100:.1f}%)")
 
+#Save the datasets
+X_train.to_csv('training_features.csv', index=False)
+Y_train.to_csv('training_target.csv', index=False)
+X_test.to_csv('test_features.csv', index=False)
+Y_test.to_csv('test_target.csv', index=False)
+
+print("Training and test datasets saved to CSV files")
