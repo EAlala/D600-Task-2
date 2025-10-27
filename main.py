@@ -74,3 +74,7 @@ plt.show()
 analysis_data_encoded = analysis_data_set.copy()
 analysis_data_encoded["Garage"] = analysis_data_encoded["Garage"].map({"Yes": 1, "No": 0})
 
+#Define X (features) and y (target)
+X = analysis_data_encoded.drop("IsLuxury", axis=1)
+Y = analysis_data_encoded["IsLuxury"]
+
