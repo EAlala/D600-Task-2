@@ -80,5 +80,12 @@ Y = analysis_data_encoded["IsLuxury"]
 
 #Split data: 80% training, 20% testing
 X_train, X_test, Y_train, Y_test = train_test_split(
-    X, Y, test_size=0.2, random_state=42, stratify=y
+    X, Y, test_size=0.2, random_state=42, stratify=Y
 )
+
+#Split display 
+print(f"\nTraining set size: {X_train.shape[0]} samples")
+print(f"Test set size: {X_test.shape[0]} samples")
+print(f"Luxury homes in training: {Y_train.sum()} ({Y_train.mean()*100:.1f}%)")
+print(f"Luxury homes in test: {Y_test.sum()} ({Y_test.mean()*100:.1f}%)")
+
