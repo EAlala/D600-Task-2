@@ -1,7 +1,8 @@
-from matplotlib import pyplot as plt
 import pandas as pd
 import numpy as np
 import seaborn as sns
+from matplotlib import pyplot as plt
+from sklearn.model_selection import train_test_split
 
 #load data set
 data_set = pd.read_csv("C:/Users/yeai2_6rsknlh/OneDrive/Visual/D600 Task 2/D600 Task 2 Dataset 1 Housing Information.csv")
@@ -56,7 +57,7 @@ bivariate_vars = ["Price", "SquareFootage", "SchoolRating", "RenovationQuality",
 
 for i, var in enumerate(bivariate_vars):
     if i < len(axes):
-        sns.boxplot(x='IsLuxury', y=var, data=analysis_data_set, ax=axes[i])
+        sns.boxplot(x="IsLuxury", y=var, data=analysis_data_set, ax=axes[i])
         axes[i].set_title(f"{var} vs IsLuxury")
 
 plt.tight_layout()
@@ -64,6 +65,12 @@ plt.show()
 
 #Categorical visuals
 plt.figure(figsize=(8, 5))
-sns.countplot(x='Garage', hue='IsLuxury', data=analysis_data_set)
+sns.countplot(x="Garage", hue="IsLuxury", data=analysis_data_set)
 plt.title("Garage vs IsLuxury")
 plt.show()
+
+#Split data
+#Convert categorical variables to numerical 
+analysis_data_encoded = analysis_data_set.copy()
+analysis_data_encoded["Garage"] = analysis_data_encoded["Garage"].map({"Yes": 1, "No": 0})
+
