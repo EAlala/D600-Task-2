@@ -120,3 +120,7 @@ for i in range(len(features)):
         print(f"Removed {worst_feature} (p-value: {max_p:.4f})")
     else:
         break
+
+#Optimized model
+X_optimal = sm.add_constant(X_train[optimal_features])
+final_model = sm.Logit(Y_train, X_optimal).fit()
