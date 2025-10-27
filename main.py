@@ -107,13 +107,12 @@ for i in range(len(features)):
     X_temp = X_train[optimal_features]
     X_temp = sm.add_constant(X_temp)
     model = sm.Logit(Y_train, X_temp).fit(disp=False)
-
-    #Find features with highest P-values
-    p_values = model.pvalues[1:]
+    
+    # Find features with highest p-value
+    p_values = model.pvalues[1:]  # Skip intercept
     max_p = p_values.max()
-
-    #Remove P values less than 0.05
-    if max_p > 0.05:
+    
+    if max_p > 0.10 and len(optimal_features) > 3:  # Changed from 0.05 to 0.10
         worst_feature = p_values.idxmax()
         optimal_features.remove(worst_feature)
         print(f"Removed {worst_feature} (p-value: {max_p:.4f})")
