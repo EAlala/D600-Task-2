@@ -96,10 +96,9 @@ Y_train.to_csv('training_target.csv', index=False)
 X_test.to_csv('test_features.csv', index=False)
 Y_test.to_csv('test_target.csv', index=False)
 
-print("Training and test datasets saved to CSV files")
+print("Training and test datasets saved to CSV files\n")
 
 #Logistic Regression Model with Backward Elimination
-
 features = list(X_train.columns)
 optimal_features = features.copy()
 
@@ -110,7 +109,7 @@ for i in range(len(features)):
     model = sm.Logit(Y_train, X_temp).fit(disp=False)
 
     #Find features with highest P-values
-    p_values = model.pvaules[1:]
+    p_values = model.pvalues[1:]
     max_p = p_values.max()
 
     #Remove P values less than 0.05
@@ -134,3 +133,12 @@ print("\nEXTRACTED MODEL PARAMETERS:")
 print(f"AIC: {final_model.aic:.4f}")
 print(f"BIC: {final_model.bic:.4f}")
 print(f"Pseudo R-squared: {final_model.prsquared:.4f}")
+
+#Coefficients and p-values
+coef_df = pd.DataFrame({
+    'Variable': final_model.params.index[1:],  # Skip const
+    'Coefficient': final_model.params[1:],
+    'P-value': final_model.pvalues[1:]
+})
+print("\nCOEFFICIENTS AND P-VALUES:")
+print(coef_df.round(4))
