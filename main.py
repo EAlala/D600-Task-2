@@ -4,6 +4,7 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 import statsmodels.api as sm
+from sklearn.metrics import confusion_matrix, accuracy_score
 
 #load data set
 data_set = pd.read_csv("C:/Users/yeai2_6rsknlh/OneDrive/Visual/D600 Task 2/D600 Task 2 Dataset 1 Housing Information.csv")
@@ -141,3 +142,10 @@ coef_df = pd.DataFrame({
 })
 print("\nCOEFFICIENTS AND P-VALUES:")
 print(coef_df.round(4))
+
+#Training set performance
+print("Training Set Performance")
+
+#Predict on training set
+Y_train_pred_proba = final_model.predict(X_optimal)
+Y_train_pred = (Y_train_pred_proba > 0.5).astype(int)
